@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>leyu · 知识库索引页面</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(145deg, #fce5d7 0%, #fbe2d0 45%, #f7d4bd 100%);
+      font-family: "Noto Sans SC", "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1.2rem;
+      line-height: 1.6;
+    }
+
+    .card-wrap {
+      max-width: 960px;
+      width: 100%;
+      background: rgba(255, 252, 248, 0.88);
+      backdrop-filter: blur(2px);
+      border-radius: 40px 40px 32px 32px;
+      box-shadow: 0 20px 40px rgba(180, 110, 60, 0.18), 0 4px 12px rgba(140, 70, 30, 0.08);
+      padding: 2.4rem 2rem;
+      transition: all 0.2s ease;
+    }
+
+    @media (max-width: 600px) {
+      .card-wrap {
+        padding: 1.8rem 1.2rem;
+        border-radius: 28px;
+      }
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #4d2e1c;
+      margin-bottom: 0.35rem;
+      border-left: 6px solid #c4875a;
+      padding-left: 1.2rem;
+    }
+
+    .subhead {
+      color: #7e5a3e;
+      font-size: 0.95rem;
+      margin-left: 1.8rem;
+      margin-top: -0.2rem;
+      margin-bottom: 1.8rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 2px dashed #e4cbb8;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem;
+      margin: 1.8rem 0 1.2rem;
+    }
+
+    @media (max-width: 620px) {
+      .section-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+    }
+
+    .card-item {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 1.6rem 1.4rem;
+      box-shadow: 0 6px 14px rgba(170, 108, 64, 0.10);
+      transition: all 0.15s;
+    }
+
+    .card-item h2 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #4d2e1c;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .card-item h2::before {
+      content: "▸";
+      color: #c4875a;
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+
+    .card-item p, .card-item li {
+      color: #3b2a1e;
+      font-size: 0.95rem;
+    }
+
+    .card-item ul {
+      list-style: none;
+      padding-left: 0.2rem;
+    }
+
+    .card-item li {
+      margin: 0.35rem 0;
+      padding-left: 0.9rem;
+      position: relative;
+    }
+
+    .card-item li::before {
+      content: "·";
+      color: #b9825f;
+      font-weight: bold;
+      position: absolute;
+      left: 0.1rem;
+    }
+
+    .feature-item {
+      background: #ffffff;
+    }
+
+    .scene-item {
+      background: #ffffff;
+    }
+
+    .info-area {
+      background: #fdf7f2;
+      border-radius: 24px;
+      padding: 1.2rem 1.6rem;
+      margin: 1.5rem 0 1.2rem;
+      border: 1px solid #eddccc;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.8rem 1.6rem;
+    }
+
+    .info-area strong {
+      color: #5f3c24;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .info-area span + span::before {
+      content: "·";
+      margin: 0 0.6rem 0 0.2rem;
+      color: #b9825f;
+    }
+
+    .tip-box {
+      background: #f6ede5;
+      border-radius: 80px 24px 24px 80px;
+      padding: 0.8rem 1.6rem;
+      margin: 1.2rem 0 1.8rem;
+      display: inline-block;
+      border-left: 4px solid #c4875a;
+      font-size: 0.95rem;
+      color: #3b2a1e;
+    }
+
+    @media (max-width: 480px) {
+      .tip-box {
+        border-radius: 24px;
+      }
+    }
+
+    .faq-mini {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 1.4rem 1.6rem;
+      margin: 1rem 0 0.8rem;
+      box-shadow: 0 4px 12px rgba(170, 108, 64, 0.05);
+    }
+
+    .faq-mini h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #4d2e1c;
+      margin: 0.8rem 0 0.3rem;
+    }
+
+    .faq-mini h3:first-of-type {
+      margin-top: 0;
+    }
+
+    .faq-mini p {
+      color: #4d3a2d;
+      font-size: 0.9rem;
+      margin-bottom: 0.6rem;
+      padding-left: 0.4rem;
+    }
+
+    .tag-link {
+      display: inline-block;
+      background: #c4875a;
+      color: #fff;
+      font-weight: 500;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .tag-link:hover {
+      background: #b07044;
+      transform: scale(1.02);
+    }
+
+    .inline-link {
+      color: #a86d42;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dotted #c9a889;
+      transition: border 0.1s;
+    }
+
+    .inline-link:hover {
+      border-bottom: 1px solid #8f5f3d;
+      color: #7f4f2e;
+    }
+
+    .footer-note {
+      margin-top: 2rem;
+      border-top: 2px solid #eddccc;
+      padding-top: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      color: #6a4f38;
+      font-size: 0.85rem;
+    }
+
+    .footer-note a {
+      color: #6a4f38;
+      text-decoration: none;
+      border-bottom: 1px solid #c9b09b;
+    }
+
+    .footer-note a:hover {
+      color: #3d2b1d;
+    }
+
+    .badge-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: #c4875a;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+<div class="card-wrap">
+
+  <h1>资料索引 · leyu 知识库</h1>
+  <div class="subhead">
+    基于信息整理与分类的入口页面 —— 将分散的字段、场景、指引汇聚为一处。
+  </div>
+
+  <!-- 网格卡片：目录感布局 -->
+  <div class="section-grid">
+    <div class="card-item feature-item">
+      <h2>信息组织方式</h2>
+      <ul>
+        <li>按内容领域建立目录节点</li>
+        <li>关键字段与标签式索引</li>
+        <li>版本记录与更新摘要</li>
+      </ul>
+      <p style="margin-top: 0.6rem;">每一个条目对应一个整理单元，<a href="https://index-pro-leyu.com" class="inline-link">leyu</a> 作为枢纽指向资料本体。</p>
+    </div>
+    <div class="card-item scene-item">
+      <h2>适用场景举例</h2>
+      <ul>
+        <li>查阅项目背景与结构说明</li>
+        <li>快速检索分类下的子页</li>
+        <li>核对不同模块的关联关系</li>
+      </ul>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #5f4533;">以上场景均围绕 <strong>leyu</strong> 知识库展开，提供低噪点的查阅路径。</p>
+    </div>
+  </div>
+
+  <!-- 说明区 + 提示区混合 -->
+  <div class="info-area">
+    <strong>说明区</strong>
+    <span>本索引对应主站 <a href="https://index-pro-leyu.com" class="inline-link">leyu</a> 的内容框架</span>
+    <span>定期收录更新记录与字段说明</span>
+    <span>仅作为资料导航，非产品本身</span>
+  </div>
+
+  <div class="tip-box">
+    <span class="badge-dot"></span> 提示：所有链接指向主站对应条目，请结合上下文理解归类方式。如需查阅完整资料，可直接从 <a href="https://index-pro-leyu.com" class="inline-link" style="border-bottom: 1px solid #b9825f;">leyu</a> 的根目录切入。
+  </div>
+
+  <!-- FAQ 摘要区 -->
+  <div class="faq-mini">
+    <h3>❓ 常见索引相关问题</h3>
+    <p><strong>Q：</strong> 为什么用目录形式呈现？<br>
+    <strong>A：</strong> 便于按层次浏览，减少信息过载，每个卡片对应一类知识块。</p>
+    <p><strong>Q：</strong> 如何关联到具体内容？<br>
+    <strong>A：</strong> 页面内嵌的链接均指向 <a href="https://index-pro-leyu.com" class="inline-link">leyu</a> 下的对应页面，点击即可跳转。</p>
+    <p><strong>Q：</strong> 索引更新频率？<br>
+    <strong>A：</strong> 跟随主站内容迭代，不设固定周期，以实际调整为基准。</p>
+  </div>
+
+  <!-- 相关信息区 -->
+  <div style="background: #f1e4d9; border-radius: 20px; padding: 0.8rem 1.4rem; margin: 1.2rem 0 0.6rem;">
+    <span style="font-weight: 600; color: #4d2e1c;">相关信息区</span> 
+    <span style="margin-left: 0.6rem; color: #5f4533;">· 内容分类标签：字段说明 / 结构图 / 版本日志</span>
+    <span style="margin-left: 0.6rem; color: #5f4533;">· 关联资源：<a href="https://index-pro-leyu.com" class="inline-link">leyu</a> 首页目录</span>
+  </div>
+
+  <div class="footer-note">
+    <span>© 资料索引 · 知识库方向</span>
+    <span>主站链接 <a href="https://index-pro-leyu.com">leyu</a> · 基于信息整理</span>
+  </div>
+
+</div>
+</body>
+</html>
