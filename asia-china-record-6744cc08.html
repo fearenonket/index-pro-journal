@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 持续关注的所在</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #f5f7fa;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        /* 深色头图 */
+        .hero {
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 4rem 2rem 3.2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #f97316, #facc15, #f97316);
+            background-size: 200% 100%;
+            animation: shimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 0%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            max-width: 640px;
+            margin: 0 auto;
+            font-weight: 350;
+        }
+
+        /* 浅色正文区 */
+        .container {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 3.5rem;
+        }
+
+        .lead {
+            font-size: 1.05rem;
+            background: #ffffff;
+            padding: 1.8rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            margin-bottom: 2.2rem;
+            border-left: 5px solid #f97316;
+        }
+
+        .lead p {
+            margin-bottom: 1rem;
+        }
+
+        .lead p:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2.2rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 18px;
+            padding: 1.5rem 1.4rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            border: 1px solid #edf2f7;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #475569;
+        }
+
+        .feature-card .num {
+            display: inline-block;
+            background: #0f172a;
+            color: white;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+        }
+
+        .context-note {
+            background: #f1f5f9;
+            padding: 1.8rem 2rem;
+            border-radius: 20px;
+            margin: 2rem 0 1.8rem;
+            font-size: 1rem;
+        }
+
+        .context-note a {
+            color: #f97316;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .context-note a:hover {
+            border-bottom: 1px solid #f97316;
+        }
+
+        .faq-mini {
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1.8rem;
+            margin-top: 2rem;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.4rem 0;
+            color: #334155;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .faq-mini summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-mini summary::before {
+            content: "▸";
+            margin-right: 0.6rem;
+            color: #f97316;
+            transition: transform 0.2s;
+        }
+
+        .faq-mini details[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        .faq-mini details p {
+            padding: 0.5rem 0 0.5rem 1.8rem;
+            color: #475569;
+            font-size: 0.95rem;
+        }
+
+        .close {
+            margin-top: 2.8rem;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.95rem;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 2rem;
+        }
+
+        .close span {
+            display: inline-block;
+            background: #0f172a;
+            color: #facc15;
+            padding: 0.1rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0 0.2rem;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8rem; }
+            .hero .sub { font-size: 1rem; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .lead { padding: 1.4rem; }
+            .container { padding: 1.5rem 1rem 2.5rem; }
+            .context-note { padding: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero">
+    <h1>再次抵达，并不偶然</h1>
+    <p class="sub">每一次访问都延续着对数字边界的探索<br>收藏页签之下，是熟悉的入口，也是新的发现</p>
+</section>
+
+<div class="container">
+
+    <div class="lead">
+        <p>对于习惯将优质站点收入书签的人来说，<a href="https://asia-china-ayx.com" style="color:#f97316; text-decoration: none; font-weight: 500;">爱游戏</a>是一个值得反复回来的坐标。它不追逐喧嚣的流量叙事，而是以克制而专业的方式，聚合信息与体验。再次输入网址时，你会发现界面依然干净，内容却有更新——正是这种持续而稳定的供给，让收藏变得有意义。</p>
+        <p>页面加载的速度、信息排布的节奏、暗色与强调色之间的平衡，都暗示着背后对细节的在意。它不是第一眼惊艳的类型，但会在你第二次、第三次访问时，让你感到一种熟悉的舒适。</p>
+    </div>
+
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h3><span class="num">1</span> 结构稳定 · 常来常新</h3>
+            <p>栏目划分清晰，内容更新有规律。无需重新适应布局，每次打开都像与老友碰面。</p>
+        </div>
+        <div class="feature-card">
+            <h3><span class="num">2</span> 信息密度恰当</h3>
+            <p>页面不堆积冗余模块，每段文字、每张卡片都有其功能，阅读负担低，获取效率高。</p>
+        </div>
+        <div class="feature-card">
+            <h3><span class="num">3</span> 强调色贯穿</h3>
+            <p>橙色调作为视觉锚点，在链接、分割线、细节元素中反复出现，形成连贯的记忆点。</p>
+        </div>
+        <div class="feature-card">
+            <h3><span class="num">4</span> 响应式考量</h3>
+            <p>从宽屏到手机，排版始终可读。卡片在窄屏下自动单列，触控区域友好。</p>
+        </div>
+    </div>
+
+    <div class="context-note">
+        <p>如果你也是那种喜欢保持浏览器收藏夹整洁、定期回访的人，那么把 <a href="https://asia-china-ayx.com">爱游戏</a> 放在一个合适的分组里，是一个值得的习惯。它不依赖推送，不制造焦虑，只在你主动输入或点击书签时，呈现它准备好的内容。<br>安静、持续、有质感——这是它对自己的定位，也是值得被持续关注的原因。</p>
+    </div>
+
+    <div class="faq-mini">
+        <details>
+            <summary>为什么值得我再次打开这个站点？</summary>
+            <p>因为它的界面设计以信息效率为先，经过一段时间后内容会自然迭代，且整体风格一致——你不会每次面对一个陌生的布局。对于追求稳定体验、又希望保持信息新鲜度的使用者来说，这是一个合适的选项。</p>
+        </details>
+        <details>
+            <summary>收藏夹里站点很多，这个有什么不同？</summary>
+            <p>不同在于它对「回访体验」的打磨：加载速度、字体排印、颜色对比、内容层级都经过细心控制。它不试图捕获你全部的注意力，而是让你在需要的时候，恰好找到想看的。</p>
+        </details>
+        <details>
+            <summary>我应该多久回来一次？</summary>
+            <p>没有固定频率。它更适合作为「定期自行查阅」的资源，而不是每日刷新的信息流。一周、半个月，甚至更久，每次回来都会有恰当的熟悉感与新鲜度的平衡。</p>
+        </details>
+    </div>
+
+    <div class="close">
+        <span>✦</span> 收藏，是为了让好的东西在需要时刚好出现 <span>✦</span>
+    </div>
+
+</div>
+
+</body>
+</html>
